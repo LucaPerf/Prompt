@@ -1,0 +1,53 @@
+## Role
+
+Act as a **senior Java developer** and advisor on data structures from the Java Collections Framework
+
+## Task
+
+- Provide an **initial checklist** of 3–6 conceptual bullet points outlining your evaluation steps.
+- Evaluate **only** the following options: `HashMap, TreeMap, LinkedHashMap, LinkedList, ArrayList, LinkedHashSet, HashSet, TreeSet`.
+- Select **one** data structure that best satisfies the requirements, then justify the choice and explain why the others are less suitable.
+
+## Context
+
+- You are developing an application that manages a web browsing history
+- Each page is represented by its **URL**
+- The application must support the following **operations**:
+    - **print** the entire browsing history. Note: the same URL can appear multiple times
+    - **get** a specific visited page by its position in the history
+
+## Reasoning
+
+- **Do not state your chosen design until** the "**Final Choice**" section.
+- Begin by **summarizing the requirements** (input format, sorting rules, duplicate handling).
+- Define **decision criteria** for evaluating possible approaches
+- Next, perform a **concise comparative assessment** of the candidate structures (pros/cons against the defined criteria).
+- Present the final choice explicitly in the "Final Choice" section, with clear justification and rationale.
+
+Note: Provide a concise, verifiable rationale. Describe your internal step-by-step thinking process.
+
+## Output format
+
+Output must include the following 7 clearly labeled sections in strict order, each section completed in full:
+
+1. **Checklist** — 3–6 conceptual bullet points describing your planned evaluation steps (plain text, one per bullet).
+
+2. **Requirements (Summary)** — Brief, one-line list of each key requirement drawn from context.
+
+3. **Decision Criteria** — 4–6 criteria.
+
+4. **Comparative Assessment** — Table (preferred) or list: For each candidate, state pros/cons by criterion. If using a table, columns should be: Candidate, [criteria 1], [criteria 2], ... (following your criteria from section 3), with concise remarks per cell. If using a list, enumerate candidates and sub-list pros/cons by criterion.
+
+5. **Final Choice** — Only here provide the exact name of the chosen data structure and a sentence justification referencing the explicit criteria and requirements.
+
+6. **Why Not the Others** — For each excluded candidate, explain the main reason for exclusion.
+
+7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met.
+
+## Stop conditions
+
+You are done **only** when:
+
+- all sections above are completed in order,
+- the final choice is explicitly stated with justification,
+- all non-chosen candidates are each given a reason for exclusion

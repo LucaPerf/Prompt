@@ -1,0 +1,169 @@
+## Role
+
+Act as an impartial auditor specialized in detecting (i) **constraint coverage** and (ii) **inconsistencies/contradictions** in LLM outputs.
+
+You will evaluate both **REASONING** and **FINAL_ANSWER** against three constraints: **uniqueness**, **order**, **sorting by values**.
+
+## Task
+
+Given:
+
+- **PROMPT**: the original task requirements
+- **REASONING**: the model’s reasoning text
+- **FINAL_ANSWER**: the model’s final answer
+
+Deliver the metrics described below by following these steps:
+A) Check if each constraint is **explicitly addressed** in the **FINAL_ANSWER** (presence flags).
+B) Assess **FINAL_ANSWER** for contradictions or violations for each constraint (output inconsistency).
+C) Check if each constraint is **explicitly confirmed in the concluding part** of **REASONING** (reasoning presence flags).
+D) Evaluate the **REASONING** for contradictions or false starts regarding each constraint, and whether they are corrected (reasoning inconsistency).
+E) Extract brief **verbatim** excerpts that are incorrect or contradictory (from both FINAL_ANSWER and REASONING).
+F) Add brief notes only as necessary.
+
+**Important rules:**
+
+- Use **only** the provided PROMPT / REASONING / FINAL_ANSWER. Do not assume missing details.
+- When quoting evidence, copy the text **verbatim**
+
+## Context
+
+### Inputs
+
+**PROMPT**
+
+<<<PROMPT_START
+
+$prompt_content
+
+PROMPT_END>>>
+
+**REASONING**
+
+<<<REASONING_START
+
+$reasoning_text
+
+REASONING_END>>>
+
+**FINAL_ANSWER**
+
+<<<FINAL_ANSWER_START
+
+$final_answer
+
+FINAL_ANSWER_END>>>
+
+### Definitions & Rules
+
+Evaluate Output and Reasoning based on these definitions:
+
+- **Condition 1 Uniqueness of the elements - Output (True/False)**: indicates whether the condition of uniqueness of the elements appears in the text of the final answer
+- **Condition 2 Order of the elements - Output (True/False)**: indicates whether the condition regarding the management of the order of the elements appears in the text of the final answer
+- **Condition 3 Elements are sorted by values - Output (True/False)**: indicates whether the condition to sort the elements according to specific value attributes appears in the text of the final answer. The check includes the different formulations of the prompt:
+    - *Formulation 1:* sorting *by family name, name and ID*
+    - *Formulation 2:* sorting *by name*
+    - *Formulation 3:* sorting *by street name*
+- **Condition 1 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the uniqueness constraint
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* to be selected if *Condition 1 - Output* is **False** (the model did not address the topic, making it impossible to evaluate inconsistency)
+- **Condition 2 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the management of the order of the elements
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* to be selected if *Condition 2 - Output* is **False**
+- **Condition 3 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the application of sorting criteria
+    - *True:* contradictions are present in the text of the answer, or the proposed solution does not respect the required sorting hierarchy (e.g., priority *Family name* > *name* > *ID*)
+    - *False:* contradictions are not present and the hierarchy is respected
+    - *- (Not applicable)*: to be selected if *Condition 3 - Output* is **False**
+- **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the concluding part of the reasoning, the condition of uniqueness of the elements is present and confirmed as the definitive choice
+- **Condition 2 Order of the elements - Reasoning (True/False)**: indicates whether, in the concluding part of the reasoning, the condition regarding the management of the order of the elements is present and confirmed as the definitive choice
+- **Condition 3 Elements are sorted by values - Reasoning (True/False)**: indicates whether, in the concluding part of the reasoning, the condition to sort the elements according to specific value attributes is present and confirmed. The check includes the different formulations of the prompt:
+    - *Formulation 1:* sorting *by family name, name and ID*
+    - *Formulation 2:* sorting *by name*
+    - *Formulation 3:* sorting *by street name*
+- **Condition 1 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the uniqueness constraint during the reasoning
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned uniqueness)
+- **Condition 2 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the management of the order of the elements during the reasoning
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned order)
+- **Condition 3 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the application of criteria for sorting by value
+    - *True (Corrected):* the model initially proposed an incorrect or partial sorting, but **self-corrected**, finally defining the correct hierarchy
+    - *True (Uncorrected):* the model presents unresolved contradictions or concludes the reasoning proposing a hierarchy that does not respect the required one
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned sorting)
+- **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+- **Incorrect Statements - Reasoning**:  transcription of specific statements within the reasoning process that present contradictions but have subsequently been corrected
+
+## Reasoning Steps
+
+Justify each metric value using evidence from the **PROMPT**, **REASONING**, and **FINAL_ANSWER** (succinctly, with quotes ≤25 words as needed, and short point-wise reasoning, approx. 5-10 points):
+
+1. Identify expectations for **Uniqueness**, **Order**, and **Sorting by values** from the **PROMPT** (noting ambiguity and how it is interpreted, if present).
+2. In the **FINAL_ANSWER**:
+    - Mark **Output presence** as True only if explicitly mentioned/committed to; otherwise False.
+    - Mark **Output inconsistency** True if contradictions/violations exist; False if not; use - only if Output presence is False.
+3. In the **REASONING**:
+    - For **Reasoning presence**, examine the entire reasoning, particularly the conclusion: True if constraint is explicitly confirmed; otherwise False.
+    - For **Reasoning inconsistency**, use True (Corrected), True (Uncorrected), False, or - as appropriate.
+4. When a constraint is present or inconsistent, provide a short verbatim quote as evidence.
+
+## Output Format
+
+Your output must always include these four parts, in this exact order:
+
+1. **Markdown Table** 
+    - One row per metric, columns: |Metric|Value|Note/justification|. Use **exact metric names** and **allowed string values** as defined above.
+    - Justification should be concise (1–2 sentences). Include double-quoted short verbatim evidence when necessary.
+2. **Incorrect Statements (verbatim excerpts)**
+    - **Incorrect Statements – Output:** List up to 5 from FINAL_ANSWER, or 'None'.
+    - **Incorrect Statements – Reasoning:** List up to 5 from REASONING, or 'None'.
+3. **Final summary**
+    - 4–6 bullet points including PASS / FAIL / NEEDS_REVISION, and top 1–2 reasons.
+4. **Final JSON (for parsing)**
+    - Output a valid JSON object wrapped by markers on their own lines
+    - IMPORTANT:
+        - Do NOT use markdown code fences (no ```json).
+        - Do NOT bold the markers.
+        - The first character after BEGIN_JSON must be '{' on the next line.
+        - The last character before END_JSON must be '}' on the previous line.
+        - The JSON must be parseable with a strict JSON parser (no trailing commas, no comments).
+        - All "value" fields MUST be strings (never numbers like 0/1).
+    - JSON MUST MATCH THIS EXACT TEMPLATE (copy it exactly; replace only the values/notes; no ellipses):
+        BEGIN_JSON
+        {
+        "metrics": [
+            {"metric": "Condition 1 Uniqueness of the elements - Output (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 2 Order of the elements - Output (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 3 Elements are sorted by values - Output (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 1 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+            {"metric": "Condition 2 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+            {"metric": "Condition 3 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+            {"metric": "Condition 1 Uniqueness of the elements - Reasoning (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 2 Order of the elements - Reasoning (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 3 Elements are sorted by values - Reasoning (True/False)", "value": "", "note": ""},
+            {"metric": "Condition 1 Inconsistency - Reasoning", "value": "", "note": ""},
+            {"metric": "Condition 2 Inconsistency - Reasoning", "value": "", "note": ""},
+            {"metric": "Condition 3 Inconsistency - Reasoning", "value": "", "note": ""},
+            {"metric": "Incorrect Statements - Output", "value": "", "note": ""},
+            {"metric": "Incorrect Statements - Reasoning", "value": "", "note": ""}
+        ],
+        "incorrect_statements_output": [],
+        "incorrect_statements_reasoning": []
+        }
+        END_JSON
+    
+## Stop Conditions
+
+- The output must contain **only** these 4 parts, **in this exact order**:
+    
+    1)Markdown table,  2) Incorrect Statements, 3) Final summary, 4) Final JSON.
+    
+    **Nothing else.**
+    
+- Table Note / Justification: max 1–2 sentences.
+- The JSON must be **valid** (no comments, no trailing commas)
