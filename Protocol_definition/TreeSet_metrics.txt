@@ -23,9 +23,9 @@
     - *True:* contradictions are present in the text of the answer, or the proposed solution does not respect the required sorting hierarchy (e.g., priority *Family name* > *name* > *ID*)
     - *False:* contradictions are not present and the hierarchy is respected
     - *- (Not applicable)*: to be selected if *Condition 3 - Output* is **False**
-- **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the concluding part of the reasoning, the condition of uniqueness of the elements is present and confirmed as the definitive choice
-- **Condition 2 Order of the elements - Reasoning (True/False**): indicates whether, in the concluding part of the reasoning, the condition regarding the management of the order of the elements is present and confirmed as the definitive choice
-- **Condition 3 Elements are sorted by values - Reasoning (True/False)**: indicates whether, in the concluding part of the reasoning, the condition to sort the elements according to specific value attributes is present and confirmed. The check includes the different formulations of the prompt:
+- **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the uniqueness constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
+- **Condition 2 Order of the elements - Reasoning (True/False**): indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the element-order constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
+- **Condition 3 Elements are sorted by values - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the model explicitly confirms that the selected data structure satisfies the sorting requirement with the exact attribute order specified by the prompt formulation:
     - *Formulation 1:* sorting *by family name, name and ID*
     - *Formulation 2:* sorting *by name*
     - *Formulation 3:* sorting *by street name*
