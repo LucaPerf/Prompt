@@ -44,7 +44,7 @@ Output must include the following 7 clearly labeled sections in strict order, ea
 
 6. **Why Not the Others** — For each excluded candidate, explain the main reason for exclusion.
 
-7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met.
+7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met. Present this evaluation in a table with a column "Verdict" containing only `True` or `False` for each requirement.
 
 ## Stop conditions
 
