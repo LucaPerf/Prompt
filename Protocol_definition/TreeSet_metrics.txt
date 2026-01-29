@@ -24,7 +24,7 @@
     - *False:* contradictions are not present and the hierarchy is respected
     - *- (Not applicable)*: to be selected if *Condition 3 - Output* is **False**
 - **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the uniqueness constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
-- **Condition 2 Order of the elements - Reasoning (True/False**): indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the element-order constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
+- **Condition 2 Order of the elements - Reasoning (True/False)**:  indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the element-order constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
 - **Condition 3 Elements are sorted by values - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the model explicitly confirms that the selected data structure satisfies the sorting requirement with the exact attribute order specified by the prompt formulation:
     - *Formulation 1:* sorting *by family name, name and ID*
     - *Formulation 2:* sorting *by name*
@@ -45,7 +45,7 @@
     - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
     - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned sorting)
 - **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
-- **Incorrect Statements - Reasoning**: transcription of specific statements within the reasoning process that present contradictions but have subsequently been corrected
+- **Incorrect Statements - Reasoning**: transcription of specific statements within the reasoning that are contradictory and/or violate the prompt constraints (including corrected and uncorrected cases).
 - **Time of Thought (seconds)**: duration of the model’s reasoning process (thought), expressed in seconds
 - **Reasoning Steps**: number of logical steps produced by the model in the reasoning phase
 - **Number of words in the thought (Words in Reasoning Phase)**: number of words generated during the reasoning phase
