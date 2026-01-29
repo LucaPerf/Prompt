@@ -1,0 +1,36 @@
+- **ID Test**: unique numerical identifier assigned to the single test execution
+- **Name**: identifying name of the prompt
+- **Model**: name of the Large Language Model (LLM) used for the test
+- **Outcome (0/1)**: binary indicator of the correctness of the final solution
+    - *0:* the model proposed the incorrect data structure
+    - *1:* the model proposed the correct data structure
+- **Proposed Structure**: specific data structure proposed by the model as the final solution
+- **Condition 1 Uniqueness of the elements - Output (True/False)**: indicates whether the condition of uniqueness of the elements appears in the text of the final answer
+- **Condition 2 Order of the elements - Output (True/False)**: indicates whether the final answer explicitly states that the collection does not require any specific order
+- **Condition 1 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the uniqueness constraint
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* only if uniqueness is never mentioned in the final answer
+- **Condition 2 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the order requirement
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* only if the order is never mentioned in the final answer
+- **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the uniqueness constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
+- **Condition 2 Order of the elements - Reasoning (True/False**):  indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), it is explicitly stated that the collection does not require any specific order, consistent with the selected data structure
+- **Condition 1 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the uniqueness constraint during the reasoning. Note: inconsistency is evaluated over the entire reasoning, not only the decision rationale.
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned uniqueness)
+- **Condition 2 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the order requirement during the reasoning. Note: inconsistency is evaluated over the entire reasoning, not only the decision rationale.
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned order)
+- **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+- **Incorrect Statements - Reasoning**: transcription of specific statements within the reasoning that are contradictory and/or violate the prompt constraints (including corrected and uncorrected cases)
+- **Time of Thought (seconds)**: duration of the model’s reasoning process (thought), expressed in seconds
+- **Reasoning Steps**: number of logical steps produced by the model in the reasoning phase
+- **Number of words in the thought (Words in Reasoning Phase)**: number of words generated during the reasoning phase
+- **Number of words for the answer (Words in Final Answer)**: number of words contained in the final answer
+- **Total number of words (Total Words Generated)**: overall length of the output, calculated as the sum of the words in the reasoning and the final answer
