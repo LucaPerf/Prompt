@@ -12,14 +12,14 @@ Given:
 - **REASONING**: the model’s reasoning text
 
 Deliver the metrics described below by following these steps:
-A) Check if each constraint is **explicitly confirmed in the concluding part** of **REASONING** (reasoning presence flags).
+A) Check if each constraint is **explicitly confirmed in the reasoning’s decision rationale (the sentences where the solution is stated and justified)** of **REASONING** (reasoning presence flags).
 B) Evaluate the **REASONING** for contradictions or false starts regarding each constraint, and whether they are corrected (reasoning inconsistency).
 C) Extract brief **verbatim** excerpts that are incorrect or contradictory.
 D) Add brief notes only as necessary.
 
 **Important rules:**
 
-- Use **only** the provided PROMPT / REASONING . Do not assume missing details.
+- Use **only** the provided PROMPT / REASONING. Do not assume missing details.
 - When quoting evidence, copy the text **verbatim**
 
 ## Context
@@ -47,7 +47,7 @@ REASONING_END>>>
 Evaluate Reasoning based on these definitions:
 
 - **Condition 1 Uniqueness of the elements - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the uniqueness constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
-- **Condition 2 Order of the elements - Reasoning (True/False**):  indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the element-order constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
+- **Condition 2 Order of the elements - Reasoning (True/False**): indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the element-order constraint is explicitly mentioned and confirmed as satisfied by the selected data structure.
 - **Condition 3 Elements are sorted by values - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the model explicitly confirms that the selected data structure satisfies the sorting requirement with the exact attribute order specified by the prompt formulation:
     - *Formulation 1:* sorting *by family name, name and ID*
     - *Formulation 2:* sorting *by name*
@@ -56,18 +56,18 @@ Evaluate Reasoning based on these definitions:
     - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
     - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
     - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
-    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned uniqueness)
+    - *(Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned uniqueness)
 - **Condition 2 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the management of the order of the elements during the reasoning
     - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the constraint
     - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
     - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
-    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned order)
+    - *(Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned order)
 - **Condition 3 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the application of criteria for sorting by value
     - *True (Corrected):* the model initially proposed an incorrect or partial sorting, but **self-corrected**, finally defining the correct hierarchy
     - *True (Uncorrected):* the model presents unresolved contradictions or concludes the reasoning proposing a hierarchy that does not respect the required one
     - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
-    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned sorting)
-- **Incorrect Statements - Reasoning**:  transcription of specific statements within the reasoning process that present contradictions but have subsequently been corrected
+    - *(Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned sorting)
+- **Incorrect Statements - Reasoning**: transcription of specific statements within the reasoning that are contradictory and/or violate the prompt constraints (including corrected and uncorrected cases).
 
 ## Reasoning Steps
 
@@ -75,7 +75,7 @@ Justify each metric value using evidence from the **PROMPT** and **REASONING** (
 
 1. Identify expectations for **Uniqueness**, **Order**, and **Sorting by values** from the **PROMPT** (noting ambiguity and how it is interpreted, if present).
 2. In the **REASONING**:
-    - For **Reasoning presence**, examine the entire reasoning, particularly the conclusion: True if constraint is explicitly confirmed; otherwise False.
+    - For **Reasoning presence**, examine the entire reasoning, particularly the decision rationale: True if constraint is explicitly confirmed; otherwise False.
     - For **Reasoning inconsistency**, use True (Corrected), True (Uncorrected), False, or - as appropriate.
 3. When a constraint is present or inconsistent, provide a short verbatim quote as evidence.
 
@@ -100,20 +100,20 @@ Your output must always include these four parts, in this exact order:
         - The JSON must be parseable with a strict JSON parser (no trailing commas, no comments).
         - All "value" fields MUST be strings (never numbers like 0/1).
     - JSON MUST MATCH THIS EXACT TEMPLATE (copy it exactly; replace only the values/notes; no ellipses):
-        BEGIN_JSON
-        {
-        "metrics": [
-            {"metric": "Condition 1 Uniqueness of the elements - Reasoning (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 2 Order of the elements - Reasoning (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 3 Elements are sorted by values - Reasoning (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 1 Inconsistency - Reasoning", "value": "", "note": ""},
-            {"metric": "Condition 2 Inconsistency - Reasoning", "value": "", "note": ""},
-            {"metric": "Condition 3 Inconsistency - Reasoning", "value": "", "note": ""},
-            {"metric": "Incorrect Statements - Reasoning", "value": "", "note": ""}
-        ],
-        "incorrect_statements_reasoning": []
-        }
-        END_JSON
+    BEGIN_JSON
+    {
+    "metrics": [
+    {"metric": "Condition 1 Uniqueness of the elements - Reasoning (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 2 Order of the elements - Reasoning (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 3 Elements are sorted by values - Reasoning (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 1 Inconsistency - Reasoning", "value": "", "note": ""},
+    {"metric": "Condition 2 Inconsistency - Reasoning", "value": "", "note": ""},
+    {"metric": "Condition 3 Inconsistency - Reasoning", "value": "", "note": ""},
+    {"metric": "Incorrect Statements - Reasoning", "value": "", "note": ""}
+    ],
+    "incorrect_statements_reasoning": []
+    }
+    END_JSON
 
 ## Stop Conditions
 

@@ -55,16 +55,16 @@ Evaluate Output based on these definitions:
 - **Condition 1 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the uniqueness constraint
     - *True:* contradictions are present in the text of the answer
     - *False:* contradictions are not present
-    - *- (Not applicable):* to be selected if *Condition 1 - Output* is **False** (the model did not address the topic, making it impossible to evaluate inconsistency)
+    - *(Not applicable):* to be selected if *Condition 1 - Output* is **False** (the model did not address the topic, making it impossible to evaluate inconsistency)
 - **Condition 2 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the management of the order of the elements
     - *True:* contradictions are present in the text of the answer
     - *False:* contradictions are not present
-    - *- (Not applicable):* to be selected if *Condition 2 - Output* is **False**
+    - *(Not applicable):* to be selected if *Condition 2 - Output* is **False**
 - **Condition 3 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the application of sorting criteria
     - *True:* contradictions are present in the text of the answer, or the proposed solution does not respect the required sorting hierarchy (e.g., priority *Family name* > *name* > *ID*)
     - *False:* contradictions are not present and the hierarchy is respected
-    - *- (Not applicable)*: to be selected if *Condition 3 - Output* is **False**
-Incorrect Statements - Output: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+    - *(Not applicable)*: to be selected if *Condition 3 - Output* is **False**
+    Incorrect Statements - Output: transcription of claims within the final answer that are contradictory or violate the prompt constraints
 
 ## Reasoning Steps
 
@@ -97,20 +97,20 @@ Your output must always include these four parts, in this exact order:
         - The JSON must be parseable with a strict JSON parser (no trailing commas, no comments).
         - All "value" fields MUST be strings (never numbers like 0/1).
     - JSON MUST MATCH THIS EXACT TEMPLATE (copy it exactly; replace only the values/notes; no ellipses):
-        BEGIN_JSON
-        {
-        "metrics": [
-            {"metric": "Condition 1 Uniqueness of the elements - Output (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 2 Order of the elements - Output (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 3 Elements are sorted by values - Output (True/False)", "value": "", "note": ""},
-            {"metric": "Condition 1 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
-            {"metric": "Condition 2 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
-            {"metric": "Condition 3 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
-            {"metric": "Incorrect Statements - Output", "value": "", "note": ""}
-        ],
-        "incorrect_statements_output": []
-        }
-        END_JSON
+    BEGIN_JSON
+    {
+    "metrics": [
+    {"metric": "Condition 1 Uniqueness of the elements - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 2 Order of the elements - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 3 Elements are sorted by values - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 1 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Condition 2 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Condition 3 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Incorrect Statements - Output", "value": "", "note": ""}
+    ],
+    "incorrect_statements_output": []
+    }
+    END_JSON
 
 ## Stop Conditions
 
