@@ -1,0 +1,121 @@
+## Role
+
+Act as an impartial auditor specialized in detecting (i) **constraint coverage** and (ii) **inconsistencies/contradictions** in LLM outputs.
+
+You will evaluate **FINAL_ANSWER** against three constraints: **key-values pairs**, **order**, and **preserves insertion order**
+
+## Task
+
+Given:
+
+- **PROMPT**: the original task requirements
+- **FINAL_ANSWER**: the model’s final answer
+
+Deliver the metrics described below by following these steps:
+A) Check if each constraint is **explicitly addressed** in the **FINAL_ANSWER** (presence flags).
+B) Assess **FINAL_ANSWER** for contradictions or violations for each constraint (output inconsistency).
+C) Extract brief **verbatim** excerpts that are incorrect or contradictory.
+D) Add brief notes only as necessary.
+
+**Important rules:**
+
+- Use **only** the provided PROMPT / FINAL_ANSWER. Do not assume missing details.
+- When quoting evidence, copy the text **verbatim**
+
+## Context
+
+### Inputs
+
+**PROMPT**
+
+<<<PROMPT_START
+
+$prompt_content
+
+PROMPT_END>>>
+
+**FINAL_ANSWER**
+
+<<<FINAL_ANSWER_START
+
+$final_answer
+
+FINAL_ANSWER_END>>>
+
+### Definitions & Rules
+
+Evaluate Output based on these definitions:
+
+- **Condition 1 Key-value pairs - Output (True/False)**: indicates whether the final answer explicitly states that the collection stores key-value associations (a key mapping to a value)
+- **Condition 2 Order of the associations - Output (True/False)**: indicates whether the final answer explicitly states that the order of the key-value associations is preserved
+- **Condition 3 Associations follow insertion order - Output (True/False)**: indicates whether the final answer explicitly states that the associations are kept in insertion order
+- **Condition 1 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the key-value association constraint
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* only if key-value association is never mentioned in the final answer
+- **Condition 2 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the order requirement of the associations
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* only if the **order** is never mentioned in the final answer
+- **Condition 3 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding insertion order
+    - *True:* contradictions are present in the text of the answer, or the proposed solution does not respect insertion order
+    - *False:* contradictions are not present and insertion order is respected
+    - *- (Not applicable)*: only if insertion order is never mentioned in the final answer
+- **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+
+## Reasoning Steps
+
+Justify each metric value using evidence from the **PROMPT**, and **FINAL_ANSWER** (succinctly, with quotes ≤25 words as needed, and short point-wise reasoning, approx. 5-10 points):
+
+1. Identify expectations for **Key-values pairs**, **Order**, and **Insertion order** from the **PROMPT** (noting ambiguity and how it is interpreted, if present).
+2. In the **FINAL_ANSWER**:
+    - Mark **Output presence** as True only if explicitly mentioned/committed to; otherwise False.
+    - Mark **Output inconsistency** True if contradictions/violations exist; False if not; use - only if Output presence is False.
+3. When a constraint is present or inconsistent, provide a short verbatim quote as evidence.
+
+## Output Format
+
+Your output must always include these four parts, in this exact order:
+
+1. **Markdown Table**
+    - One row per metric, columns: |Metric|Value|Note/justification|. Use **exact metric names** and **allowed string values** as defined above.
+    - Justification should be concise (1–2 sentences). Include double-quoted short verbatim evidence when necessary.
+2. **Incorrect Statements (verbatim excerpts)**
+    - **Incorrect Statements – Output:** List up to 5 from FINAL_ANSWER, or 'None'.
+3. **Final summary**
+    - 4–6 bullet points including PASS / FAIL / NEEDS_REVISION, and top 1–2 reasons.
+4. **Final JSON (for parsing)**
+    - Output a valid JSON object wrapped by markers on their own lines
+    - IMPORTANT:
+        - Do NOT use markdown code fences (no ```json).
+        - Do NOT bold the markers.
+        - The first character after BEGIN_JSON must be '{' on the next line.
+        - The last character before END_JSON must be '}' on the previous line.
+        - The JSON must be parseable with a strict JSON parser (no trailing commas, no comments).
+        - All "value" fields MUST be strings (never numbers like 0/1).
+    - JSON MUST MATCH THIS EXACT TEMPLATE (copy it exactly; replace only the values/notes; no ellipses):
+    BEGIN_JSON
+    {
+    "metrics": [
+    {"metric": "Condition 1 Key-value pairs - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 2 Order of the associations - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 3 Associations follow insertion order - Output (True/False)", "value": "", "note": ""},
+    {"metric": "Condition 1 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Condition 2 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Condition 3 Inconsistency - Output (True/False/-)", "value": "", "note": ""},
+    {"metric": "Incorrect Statements - Output", "value": "", "note": ""}
+    ],
+    "incorrect_statements_output": []
+    }
+    END_JSON
+
+## Stop Conditions
+
+- The output must contain **only** these 4 parts, **in this exact order**:
+
+    1)Markdown table,  2) Incorrect Statements, 3) Final summary, 4) Final JSON.
+
+    **Nothing else.**
+
+- Table Note / Justification: max 1–2 sentences.
+- The JSON must be **valid** (no comments, no trailing commas)
