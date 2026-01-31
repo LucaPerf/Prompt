@@ -64,7 +64,7 @@ Evaluate Output based on these definitions:
     - *True:* contradictions are present in the text of the answer, or the proposed solution does not respect the required sorting hierarchy (e.g., priority *Family name* > *name* > *ID*)
     - *False:* contradictions are not present and the hierarchy is respected
     - *(Not applicable)*: to be selected if *Condition 3 - Output* is **False**
-    Incorrect Statements - Output: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+- **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
 
 ## Reasoning Steps
 
