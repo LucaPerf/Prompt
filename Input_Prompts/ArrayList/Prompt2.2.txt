@@ -36,13 +36,13 @@ Output must include the following 7 clearly labeled sections in strict order, ea
 
 3. **Decision Criteria** — 4–6 criteria.
 
-4. **Comparative Assessment** — Table (preferred) or list: For each candidate, state pros/cons by criterion. If using a table, columns should be: Candidate, [criteria 1], [criteria 2], ... (following your criteria from section 3), with concise remarks per cell. If using a list, enumerate candidates and sub-list pros/cons by criterion.
+4. **Comparative Assessment** — Table: For each candidate, state pros/cons by criterion. In the table, columns should be: Candidate, [criteria 1], [criteria 2], ... (following your criteria from section 3), with concise remarks per cell.
 
 5. **Final Choice** — Only here provide the exact name of the chosen data structure and a sentence justification referencing the explicit criteria and requirements.
 
 6. **Why Not the Others** — For each excluded candidate, explain the main reason for exclusion.
 
-7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met.
+7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met. Present this evaluation in a table with a column "Verdict" containing only `True` or `False` for each requirement.
 
 ## Stop conditions
 

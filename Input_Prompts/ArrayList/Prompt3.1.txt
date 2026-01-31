@@ -10,12 +10,14 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 ## Context
 
-- You are managing a **tree maintenance register** for a park
-- Each **tree** is identified by an **ID**
-- Each **intervention** record stores: the **treated tree**, the **type of operation**, and the **date**
-- **Characteristics** of the collection:
-    - it **allows duplicate elements** (the same tree may require multiple interventions during the year)
-    - it must be possible to **access a specific intervention** by its position in the register
+- You are developing an application that manages the sequence of ekphonetic signs in a manuscript
+- Each sign is represented by its **ekphonetic mark**
+- The application must support the following **operations**:
+    - **print** the entire sequence of ekphonetic signs. Note: the same sign can appear multiple times
+    - **print** the total number of ekphonetic signs in the manuscript
+    - **remove** the ekphonetic sign at a given position in the manuscript
+    - **get** the ekphonetic sign at a given position in the manuscript
+    - **insert** an ekphonetic sign at a given position
 
 ## Reasoning
 
@@ -43,7 +45,7 @@ Output must include the following 7 clearly labeled sections in strict order, ea
 
 6. **Why Not the Others** — For each excluded candidate, explain the main reason for exclusion.
 
-7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met.
+7. **Requirements Check** — For each summary requirement in section 2, provide a rationale describing how the chosen structure meets it. After completing this section, confirm that all requirements have been met; if not, explicitly indicate which ones have not been met. Present this evaluation in a table with a column "Verdict" containing only `True` or `False` for each requirement.
 
 ## Stop conditions
 
