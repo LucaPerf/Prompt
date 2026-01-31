@@ -1,0 +1,36 @@
+- **ID Test**: unique numerical identifier assigned to the single test execution
+- **Name**: identifying name of the prompt
+- **Model**: name of the Large Language Model (LLM) used for the test
+- **Outcome (0/1)**: binary indicator of the correctness of the final solution
+    - *0:* the model proposed the incorrect data structure
+    - *1:* the model proposed the correct data structure
+- **Proposed Structure**: specific data structure proposed by the model as the final solution
+- **Condition 1 Duplicate elements allowed - Output (True/False)**: indicates whether the final answer explicitly states that duplicate elements are allowed
+- **Condition 2 Random access by index - Output (True/False)**: indicates whether the final answer explicitly states that the collection supports fast random access, meaning direct access by index/position
+- **Condition 1 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding the requirement that duplicate elements are allowed
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):*  only if duplicates are never mentioned in the final answer
+- **Condition 2 Inconsistency - Output (True/False/-)**: evaluates the presence of contradictions in the final answer regarding fast random access by index
+    - *True:* contradictions are present in the text of the answer
+    - *False:* contradictions are not present
+    - *- (Not applicable):* only if index-based/random access is never mentioned in the final answer
+- **Condition 1 Duplicate elements allowed - Reasoning (True/False)**: indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the model explicitly mentions and confirms that the selected data structure allows duplicate elements
+- **Condition 2 Random access by index - Reasoning (True/False)**:  indicates whether, in the reasoning’s decision rationale (the sentences where the solution is stated and justified), the model explicitly mentions and confirms that the selected data structure supports fast random (index-based) access
+- **Condition 1 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the requirement that duplicate elements are allowed during the reasoning. Note: inconsistency is evaluated over the entire reasoning, not only the decision rationale.
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the requirement
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned duplicates)
+- **Condition 2 Inconsistency - Reasoning**: evaluates the presence and resolution of contradictions regarding the requirement of fast random (index-based) access during the reasoning. Note: inconsistency is evaluated over the entire reasoning, not only the decision rationale.
+    - *True (Corrected):* initial contradictions or explorations of incorrect paths are present, but the model **self-corrected**, reaching a conclusion consistent with the requirement
+    - *True (Uncorrected):* contradictions that have not been resolved are present, leading to an incorrect or inconsistent conclusion in the reasoning
+    - *False:* the reasoning is linear, no contradictions or explorations of incorrect paths are present from the beginning
+    - *- (Not applicable):* to be selected **only** if the model completely ignored the topic during the reasoning (it never mentioned fast random/index-based access)
+- **Incorrect Statements - Output**: transcription of claims within the final answer that are contradictory or violate the prompt constraints
+- **Incorrect Statements - Reasoning**: transcription of specific statements within the reasoning that are contradictory and/or violate the prompt constraints (including corrected and uncorrected cases).
+- **Time of Thought (seconds)**: duration of the model’s reasoning process (thought), expressed in seconds
+- **Reasoning Steps**: number of logical steps produced by the model in the reasoning phase
+- **Number of words in the thought (Words in Reasoning Phase)**: number of words generated during the reasoning phase
+- **Number of words for the answer (Words in Final Answer)**: number of words contained in the final answer
+- **Total number of words (Total Words Generated)**: overall length of the output, calculated as the sum of the words in the reasoning and the final answer
