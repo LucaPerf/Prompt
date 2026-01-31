@@ -10,14 +10,14 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 ## Context
 
-- You are developing an application for a cluster that manages a job registry
-- A job has a **unique id** (job ID)
+- You are developing an application for a cluster that manages a registry of submitted jobs
+- Jobs must be kept **unique** and in **their original submission order**
 - The application must support the following **operations**:
     - **check** if a job is already present in the registry
-    - **print** the job registry in insertion order. ****Note: this operation is executed frequently and requires real-time response
+    - **print** the job registry in insertion order
     - **print** the total number of submitted jobs
     - **remove** a job from the registry
-    - **submit** a new job if a job with the same job ID is not already present
+    - **submit** a new job if it is not already registered
 
 ## Reasoning
 

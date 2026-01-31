@@ -11,10 +11,10 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are developing an application that manages the catalog of Guyots in the Atlantic Ocean
-- A Guyot has a **unique name**
+- Each guyot is a Guyot object containing its **name** and **position**
 - The application must support the following **operations**:
-    - **print** the list of all cataloged Guyots
-    - **add** a new Guyot to the catalog if it is not already present
+    - **print** the list of all cataloged Guyots (no specific ordering required)
+    - **add** a new Guyot object to the catalog if it is not already present
 
 ## Reasoning
 

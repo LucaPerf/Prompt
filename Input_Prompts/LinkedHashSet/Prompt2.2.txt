@@ -11,10 +11,10 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are developing an application to manage a swatch palette for a textile sample book
-- A swatch has a **unique code** (swatch ID)
+- Each swatch consists of both a **color name** and a **fabric type**
 - The application must support the following **operations**:
     - **print** the swatch palette in **insertion order**. Note: this operation is executed frequently and requires real-time response
-    - **add** a new swatch to the palette if a swatch with the same swatch ID is not already present
+    - **add** a new swatch to the palette if it is not already present
 
 ## Reasoning
 

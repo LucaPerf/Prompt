@@ -12,7 +12,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 - You are managing a **waitlist** for a service
 - The list represents the users currently waiting to be served
-- Each user is identified by a **unique id** (user ID)
+- Each user is identified by **full name** and **phone number**
 - **Characteristics** of the collection:
     - it must guarantee the **uniqueness of the users** (no duplicates)
     - the **order** of the elements is **relevant**

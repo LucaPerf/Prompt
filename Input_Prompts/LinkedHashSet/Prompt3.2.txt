@@ -12,10 +12,10 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 - You are developing an application to manage a waitlist
 - The waitlist contains the **list of users** waiting to be served
-- Each user is identified by a **unique id** (user ID)
+- Each user is identified by **full name** and **phone number**
 - The application must support the following **operations**:
     - **print** the waitlist in arrival order. Note: this operation is executed frequently and requires real-time response
-    - **add** a new user to the waitlist if a user with the same user ID is not already present
+    - **add** a new user to the waitlist if he is not already present
 
 ## Reasoning
 

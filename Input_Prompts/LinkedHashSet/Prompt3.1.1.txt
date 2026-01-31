@@ -12,8 +12,8 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 - You are managing a **waitlist** for a service
 - The list represents the users currently waiting to be served
-- Each user is identified by a **unique id** (user ID)
-- Each user is characterized by the following **attributes**: a **full name**, a **phone number**, an **email address**, a **priority level**, and a **registration timestamp**
+- Each user is identified by **full name** and **phone number**
+- Each user is characterized by the following **attributes**: a **TAX code**, an **email address**, a **priority level**, and a **registration timestamp**
 - **Characteristics** of the collection:
     - it must guarantee the **uniqueness of the users** (no duplicates)
     - the **order** of the elements is **relevant**

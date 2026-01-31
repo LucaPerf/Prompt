@@ -11,7 +11,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are managing a collection of **Guyots** in the **Atlantic Ocean**
-- A Guyot has a **unique name**
+- Each guyot is a Guyot object containing its **name** and **position**
 - **Characteristics** of the collection:
     - must guarantee the **uniqueness of the elements** (no duplicates allowed)
     - the **order** of the elements **is not important**

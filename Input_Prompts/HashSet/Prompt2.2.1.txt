@@ -11,9 +11,9 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are developing an application that manages the catalog of Guyots in the Atlantic Ocean
-- A Guyot has a **unique name**
+- Each guyot is a Guyot object containing its **name** and **position**
 - The application must support the following **operations**:
-    - **check** if a Guyot is already cataloged
+    - **check** if a Guyot object is already cataloged
     - **print** the list of all cataloged Guyots
     - **print** the total number of cataloged Guyots
     - **remove** a Guyot from the catalog

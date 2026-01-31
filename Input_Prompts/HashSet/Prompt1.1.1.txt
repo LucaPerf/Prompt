@@ -10,9 +10,9 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 ## Context
 
-- You are managing a **collection of ingredients for a recipe**
-- Each ingredient in the collection is uniquely identified by its **name**
-- Each ingredient is characterized by the following **attributes**: a **quantity**, a **unit of measure**, and an **optional note**
+- You are managing a **group** **of ingredients for a recipe**
+- Each ingredient is an Ingredient object containing its **name** and **quantity information**
+- Each ingredient is characterized by the following **attributes**: a **unit of measure**, a **category**, an **allergens**, a **preparation**, a **calories**, a **substitutes**, and an **optional note**
 - **Characteristics** of the collection:
     - must guarantee the **uniqueness of the elements** (no duplicates allowed)
     - the **order** of the elements **is not important**

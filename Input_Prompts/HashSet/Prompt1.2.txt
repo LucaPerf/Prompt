@@ -11,10 +11,10 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are developing an application that manages the collection of ingredients needed for a recipe
-- An ingredient is **uniquely identified by** its **name** (e.g., “salt”, “flour 0”, “flour 00”, “eggs”)
+- Each ingredient is an Ingredient object containing its **name** and **quantity information**
 - The application must support the following operations:
-    - **print** the collection of ingredients required for the recipe. The order is not important. ****Note: this operation is executed frequently and requires real-time response
-    - **add** a new ingredient to the recipe ****only if an ingredient with the same name is not already present
+    - **print** the collection of ingredients required for the recipe. The order is not important. Note: this operation is executed frequently and requires real-time response
+    - **add** a new ingredient to the recipe ****only if it is not already present
 
 ## Reasoning
 

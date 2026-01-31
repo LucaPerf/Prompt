@@ -12,7 +12,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 - You are managing **Europe’s geographic map**
 - The **map** is used to identify all the **countries that border Italy**
-- Each country is identified by a **unique name**
+- Each country is a Country object containing its **name** and **capital city**
 - The application must support the following **operations**:
     - **check** if a country is already on the list
     - **print** the list of all neighboring countries of Italy. Note: the order is not important

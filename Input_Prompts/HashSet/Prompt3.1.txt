@@ -12,7 +12,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 
 - You are managing **Europe’s geographic map**
 - The **map** is used to identify all the **countries that border Italy**
-- Each country is identified by a **unique name**
+- Each country is a Country object containing its **name** and **capital city**
 - **Characteristics** of the collection:
     - it must guarantee the **uniqueness of the countries** (no duplicates)
     - the **order** of the elements **is not important**

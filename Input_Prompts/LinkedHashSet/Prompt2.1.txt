@@ -11,7 +11,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are managing a **swatch palette** for a textile sample book
-- Each swatch is identified by a **unique code** (swatch ID)
+- Each swatch consists of both a **color name** and a **fabric type**
 - **Characteristics** of the collection:
     - it must guarantee the **uniqueness of the elements** (no duplicates allowed)
     - the **order** of the elements is **relevant**

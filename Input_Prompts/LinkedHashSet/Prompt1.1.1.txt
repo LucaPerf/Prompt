@@ -11,8 +11,8 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are managing a **job registry in a cluster scheduling system**
-- A job has a **unique id** (job ID)
-- Each job is characterized by the following **attributes**: a **submission timestamp**, a **requested number of CPUs**, a **requested amount of memory**, a **priority level**, and a **current status**
+- Each job has an **id** (job ID) and a **submission timestamp**
+- Each job is characterized by the following **attributes**: a **requested number of CPUs**, a **requested amount of memory**, a **priority level**, and a **current status**
 - **Characteristics** of the collection:
     - must guarantee the **uniqueness of the elements** (no duplicates allowed)
     - the **order** of the elements **is relevant**

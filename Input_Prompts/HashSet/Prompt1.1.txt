@@ -11,7 +11,7 @@ Act as a **senior Java developer** and advisor on data structures from the Java 
 ## Context
 
 - You are managing a **collection of ingredients for a recipe**
-- Each ingredient in the collection is uniquely identified by its **name**
+- Each ingredient is an Ingredient object containing its **name** and **quantity information**
 - **Characteristics** of the collection:
     - must guarantee the **uniqueness of the elements** (no duplicates allowed)
     - the **order** of the elements **is not important**
